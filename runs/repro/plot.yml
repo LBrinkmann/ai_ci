@@ -1,0 +1,121 @@
+clean: true
+cores: 32
+preprocess_args:
+  metrics:
+    selectors:
+      agent: all
+      agent_type: ci
+      episode_part: full
+      mode: train
+      metric_name:
+        [ind_anticoordination, ind_crosscoordination]
+      architecture: [central, individual, random, shared]
+    combine:
+      "AI":
+        "random":
+          architecture: random
+        "personal":
+          architecture: individual
+        "shared":
+          architecture: shared
+        "global":
+          architecture: central
+      metric:
+        "coordination":
+          metric_name: ind_anticoordination
+        "prediction":
+          metric_name: ind_crosscoordination
+  pattern_metrics:
+    selectors:
+      mode: train
+      # agent: all
+      type: pattern
+      episode_part: full
+      pattern_length: 4
+      metric_name: [entropy, js_div_agents, js_div_episodes]
+      architecture: [central, individual, random, shared]
+    combine:
+      "AI":
+        "random":
+          architecture: random
+        "personal":
+          architecture: individual
+        "shared":
+          architecture: shared
+        "global":
+          architecture: central
+  correlations:
+    selectors:
+      mode: train
+      agent: all
+  top_pattern:
+    selectors:
+      mode: train
+      # agent: all
+plots:
+  - expand: []
+    filename: metrics
+    selectors:
+      lr: [0.001, 0.0001]
+      metric: ["coordination (group objective)", "prediction (ai objective)"]
+      AI: [random, personal, shared, global]
+    x: episode_bin
+    y: value
+    grid: [metric]
+    hue: AI
+    grid_order:
+      hue: [random, personal, shared, global]
+    style: lr
+    name: metrics_lr
+    x_label: episode
+    y_label: fraction of nodes
+  - expand: []
+    filename: metrics
+    selectors:
+      lr: [0.0001]
+      metric: ["coordination (group objective)", "prediction (ai objective)"]
+      AI: [random, personal, shared, global]
+    x: episode_bin
+    y: value
+    grid: [metric]
+    hue: AI
+    grid_order:
+      hue: [random, personal, shared, global]
+    style: lr
+    name: metrics_lr_2
+    x_label: episode
+    y_label: fraction of nodes
+  - expand: []
+    filename: pattern_metrics
+    selectors:
+      episode_bin: { "ge": 0 }
+      AI: [random, personal, shared, global]
+      lr: [0.001, 0.0001]
+      agent_type: ci
+    x: episode_bin
+    y: value
+    grid: [metric_name]
+    hue: AI
+    style: lr
+    name: entropy
+    x_label: episode
+    y_label: value
+    grid_args:
+      sharey: False
+  - expand: []
+    filename: pattern_metrics
+    selectors:
+      episode_bin: { "ge": 0 }
+      AI: [random, personal, shared, global]
+      lr: [0.0001]
+      agent_type: ci
+    x: episode_bin
+    y: value
+    grid: [metric_name]
+    hue: AI
+    style: lr
+    name: entropy_2
+    x_label: episode
+    y_label: value
+    grid_args:
+      sharey: False

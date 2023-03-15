@@ -1,0 +1,6 @@
+.*
+!/.gitignore
+data
+__pycache__
+*/.ipynb_checkpoints
+djx.egg-info/

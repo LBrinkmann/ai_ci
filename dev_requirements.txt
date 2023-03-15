@@ -1,0 +1,9 @@
+ipdb
+ipython
+matplotlib
+seaborn
+jupyter
+pylint
+flake8
+autopep8
+pytest

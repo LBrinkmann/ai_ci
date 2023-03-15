@@ -1,0 +1,37 @@
+exec:
+  command: post
+  cores: 6
+  hours: 1
+  in_dir: runs/repro/train/rewards_individual__architecture_individual__lr_0.0001
+  memory: 32
+  partition: quick
+  script_name: cpu
+exp_id: 26f58988-6847-4eca-ac05-4104a8901f35
+job_id: architecture_individual__lr_0.0001__rewards_individual
+labels:
+  architecture: individual
+  lr: 0.0001
+  rewards: individual
+params:
+  parse_args:
+    eval:
+      correlations_args:
+        bin_size: 100
+        max_delta: 10
+      metric_args:
+        bin_size: 100
+      tuple_args:
+        bin_size: 500
+    pattern_args:
+      actions: ABCD
+      max_length: 4
+      min_length: 1
+    train:
+      correlations_args:
+        bin_size: 100
+        max_delta: 10
+      metric_args:
+        bin_size: 100
+      tuple_args:
+        bin_size: 500
+  seed: null

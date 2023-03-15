@@ -1,0 +1,101 @@
+description: Here we test the different ci architectures.
+exec:
+  command: train
+  script_name: gpu
+exp_id: 0062ea67-d822-497c-b79b-6b0567a4aa60
+job_id: rewards_individual__architecture_random__lr_0.0001
+labels:
+  architecture: random
+  lr: 0.0001
+  rewards: individual
+params:
+  controller_args:
+    ai:
+      class_name: heuristic
+      heuristic_name: random
+      opt_args:
+        lr: 0.0001
+    ci:
+      class_name: madqn
+      gamma: 0.8
+      model_args:
+        hidden_size: 20
+      opt_args:
+        lr: 0.0001
+      sample_args:
+        batch_size: 20
+        horizon: 500
+      target_update_freq: 200
+      wrapper_args:
+        net_type: gru
+        weight_sharing: false
+  device_name: cuda
+  environment_args:
+    agent_type_args:
+      ai:
+        mapping_type: fixed
+      ci:
+        mapping_type: fixed
+    class_name: network_game
+    control_args:
+      correlated: true
+      cross_correlated: true
+      n_control: 8
+    episode_steps: 20
+    graph_args:
+      components: 1
+      constrains:
+        is_connected:
+          eq: true
+        max_degree:
+          le: 10
+      graph_args:
+        p: 0.1
+      graph_type: erdos_renyi
+      seed: 123
+    max_history: 5000
+    max_neighbors: 10
+    n_actions: 4
+    n_nodes: 40
+    reward_args:
+      ai:
+        ind_anticoordination:
+          ci: -1
+        ind_crosscoordination:
+          ci: 1
+      ci:
+        ind_anticoordination:
+          ci: 1
+        ind_crosscoordination:
+          ci: -1
+  observer_args:
+    ai:
+      class_name: identity
+    ci:
+      class_name: neighbor
+      neighbor_view_args:
+        actions_view:
+        - ci
+  save_interval:
+    eval: 1
+    train: 1
+  scheduler_args:
+    episodes: 10000
+    eval_period: 10
+    eval_setting:
+      eps:
+        ai: 0.0
+        ci: 0.0
+      training:
+        ai: false
+        ci: false
+    phases:
+    - episode: 0
+      setting:
+        eps:
+          ai: 0.1
+          ci: 0.1
+        training:
+          ai: true
+          ci: true
+  seed: null

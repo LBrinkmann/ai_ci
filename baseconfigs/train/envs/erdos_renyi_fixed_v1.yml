@@ -1,0 +1,28 @@
+params:
+  environment_args:
+    class_name: network_game
+    n_nodes: 40
+    n_actions: 4
+    episode_steps: 20
+    max_history: 5000
+    max_neighbors: 10
+    graph_args:
+      components: 1
+      seed: 123
+      constrains:
+        max_degree:
+          le: 10
+        is_connected:
+          eq: True
+      graph_args:
+        p: 0.1
+      graph_type: erdos_renyi
+    agent_type_args:
+      ci:
+        mapping_type: fixed
+      ai:
+        mapping_type: fixed
+    control_args:
+      correlated: True
+      cross_correlated: True
+      n_control: 8

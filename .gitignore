@@ -1,0 +1,23 @@
+.venv
+.vscode
+*/**/__pycache__
+*.egg-info
+*.log
+.env
+temp.png
+*.DS_Store
+
+logs
+tmp
+
+*.gzip
+*.pt
+*.pickle
+
+# */**/post
+# */**/merge
+# */**/train
+!baseconfigs/post
+!baseconfigs/train
+!baseconfigs/plot
+
