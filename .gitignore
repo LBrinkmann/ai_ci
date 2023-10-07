@@ -13,7 +13,10 @@ tmp
 *.gzip
 *.pt
 *.pickle
-
+!runs/repro/train/rewards_individual__architecture_individual__lr_0.0001/train/env/eval/1000.pt
+!runs/repro/train/rewards_individual__architecture_shared__lr_0.0001/train/env/eval/1000.pt
+!runs/repro/train/rewards_individual__architecture_central__lr_0.0001/train/env/eval/1000.pt
+!runs/repro/train/rewards_individual__architecture_random__lr_0.0001/train/env/eval/1000.pt
 # */**/post
 # */**/merge
 # */**/train
