@@ -8,7 +8,6 @@ Outputs:
 """
 
 from docopt import docopt
-from numpy.lib.financial import ipmt
 import pandas as pd
 import traceback
 import os
@@ -16,7 +15,6 @@ from multiprocessing import Manager, Pool
 import matplotlib.pyplot as plt
 import seaborn as sns
 import shutil
-import numpy as np
 from aci.utils.df_utils import (
     selector, expand_selectors, summarize_df, preprocess)
 from aci.utils.io import load_yaml, ensure_dir
